@@ -1,25 +1,25 @@
 /* ==========================================================
    MAJLIS SARONG CINCIN — Digital Invitation
-   Palette: Soft Blush / Dusty Rose / Ivory / Deep Rose
+   Palette: Soft Blush / Dusty Rose / Ivory / White
    ========================================================== */
 
 :root {
   /* Main palette */
   --ivory: #FFFDFB;
-  --cream: #FAF3F4;
-  --blush: #F3E2E5;
-  --blush-soft: #F8ECEE;
+  --cream: #FFF8F9;
+  --blush: #F9E8EB;
+  --blush-soft: #FCEFF1;
 
-  --pink-dark: #6F3D4A;
-  --pink-deep: #5A303B;
-  --rose: #9B6572;
-  --rose-soft: #C28D99;
+  --pink-dark: #8A5361;
+  --pink-deep: #75404F;
+  --rose: #A87582;
+  --rose-soft: #D1A3AD;
 
   --gold: #B99A72;
   --gold-light: #D8C3A5;
 
-  --ink: #3F3034;
-  --ink-soft: #75666A;
+  --ink: #46383C;
+  --ink-soft: #796C70;
 
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'Montserrat', sans-serif;
@@ -42,13 +42,16 @@ body {
   font-family: var(--font-body);
   color: var(--ink);
 
-  /* Very subtle pink gradient */
+  /* ========================================================
+     LIGHT PINK → WHITE GRADIENT
+     ======================================================== */
   background:
     linear-gradient(
       135deg,
-      #5A303B 0%,
-      #6F3D4A 45%,
-      #7B4653 100%
+      #F3D9DE 0%,
+      #F9E8EB 28%,
+      #FDF4F5 58%,
+      #FFFFFF 100%
     );
 
   -webkit-font-smoothing: antialiased;
@@ -94,11 +97,12 @@ a {
   justify-content: center;
 
   background:
-    linear-gradient(
-      145deg,
-      #5A303B 0%,
-      #6D3947 50%,
-      #7B4653 100%
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 248, 249, 0.9) 28%,
+      rgba(249, 232, 235, 0.9) 58%,
+      rgba(235, 202, 209, 0.95) 100%
     );
 
   padding: 6vh 20px 40px;
@@ -111,6 +115,7 @@ a {
   max-width: 420px;
 
   opacity: 0;
+
   animation:
     coverFadeIn 1.4s ease 0.15s forwards;
 }
@@ -142,68 +147,88 @@ a {
 .cover-art__bismillah {
   font-family: 'Aref Ruqaa', serif;
   font-weight: 700;
-  font-size: clamp(1.9rem, 8vw, 2.4rem);
+
+  font-size:
+    clamp(1.9rem, 8vw, 2.4rem);
+
   line-height: 1.25;
 
-  /* White instead of strong pink */
-  color: #FFFFFF;
+  color: var(--pink-deep);
 
   margin: 0;
+
+  text-shadow:
+    0 1px 1px rgba(255,255,255,0.7);
 }
 
 .cover-art__title {
   font-family: var(--font-body);
+
   font-weight: 600;
+
   font-size: 1.05rem;
+
   letter-spacing: 0.16em;
+
   text-transform: uppercase;
 
-  color: #FFFFFF;
+  color: var(--pink-dark);
 
   margin: 2px 0 0;
 }
 
 .cover-art__motif {
   width: 100%;
+
   display: flex;
+
   justify-content: center;
 }
 
 .cover-art__svg {
   width: 100%;
+
   max-width: 260px;
+
   height: auto;
 
-  color: var(--gold-light);
+  color: var(--gold);
 
   margin: 4px 0;
 }
 
 .cover-art__svg .cover-art__heart {
-  stroke: var(--rose-soft);
+  stroke: var(--rose);
 }
 
 .cover-art__svg .cover-art__rings {
-  color: var(--gold-light);
+  color: var(--gold);
 }
 
 .cover-art__names {
   font-family: 'Aref Ruqaa', serif;
+
   font-weight: 700;
 
-  font-size: clamp(2.1rem, 10vw, 2.7rem);
+  font-size:
+    clamp(2.1rem, 10vw, 2.7rem);
 
-  color: #FFFFFF;
+  color: var(--pink-deep);
 
   margin: 0;
+
+  text-shadow:
+    0 1px 1px rgba(255,255,255,0.7);
 }
 
 .cover-art__date {
   font-family: var(--font-display);
+
   font-size: 1.05rem;
+
   letter-spacing: 0.08em;
 
-  color: #FFFFFF;
+  color: var(--pink-dark);
 
   opacity: 0.9;
 
@@ -216,15 +241,24 @@ a {
 
 .btn-open {
   font-family: var(--font-body);
+
   font-size: 0.82rem;
+
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
 
   color: #FFFFFF;
 
-  background: rgba(255, 255, 255, 0.06);
+  background:
+    linear-gradient(
+      135deg,
+      #9C6674,
+      #B17B88
+    );
 
-  border: 1px solid var(--gold-light);
+  border:
+    1px solid rgba(255,255,255,0.7);
 
   padding: 15px 40px;
 
@@ -233,7 +267,7 @@ a {
   cursor: pointer;
 
   box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.25);
+    0 10px 26px rgba(117, 64, 79, 0.18);
 
   backdrop-filter: blur(5px);
 
@@ -249,12 +283,17 @@ a {
 }
 
 .btn-open:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(
+      135deg,
+      #8A5361,
+      #A87582
+    );
 
   transform: translateY(-2px);
 
   box-shadow:
-    0 14px 30px rgba(0, 0, 0, 0.3);
+    0 14px 30px rgba(117, 64, 79, 0.24);
 }
 
 .btn-open:active {
@@ -274,7 +313,8 @@ a {
 }
 
 .cover.is-leaving {
-  animation: coverLeave 0.7s ease forwards;
+  animation:
+    coverLeave 0.7s ease forwards;
 }
 
 @keyframes coverLeave {
@@ -291,21 +331,26 @@ a {
 .invitation {
   background:
     linear-gradient(
-      145deg,
-      #6A3846 0%,
-      #754351 50%,
-      #68404A 100%
+      135deg,
+      #F2DCE0 0%,
+      #F9E9EC 25%,
+      #FDF5F6 60%,
+      #FFFFFF 100%
     );
 
   min-height: 100vh;
 
   display: flex;
+
   justify-content: center;
 }
 
 .invitation.is-entering .card {
   animation:
-    cardEnter 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    cardEnter
+    0.9s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
 }
 
 @keyframes cardEnter {
@@ -328,24 +373,26 @@ a {
   position: relative;
 
   width: 100%;
+
   max-width: var(--max-w);
 
   background:
     linear-gradient(
       145deg,
-      #FFFDFB 0%,
-      #FBF4F5 55%,
-      #F8ECEE 100%
+      #FFFFFF 0%,
+      #FFFDFD 40%,
+      #FFF7F8 75%,
+      #FCEFF1 100%
     );
 
   box-shadow:
-    0 0 90px rgba(40, 15, 22, 0.4);
+    0 0 90px rgba(117, 64, 79, 0.16);
 
   border-left:
-    1px solid rgba(194, 141, 153, 0.3);
+    1px solid rgba(209, 163, 173, 0.28);
 
   border-right:
-    1px solid rgba(194, 141, 153, 0.3);
+    1px solid rgba(209, 163, 173, 0.28);
 }
 
 /* ==========================================================
@@ -354,11 +401,12 @@ a {
 
 .pattern-overlay {
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
 
-  opacity: 0.035;
+  opacity: 0.028;
 
   background-image:
     repeating-linear-gradient(
@@ -385,11 +433,13 @@ a {
 
 .section {
   position: relative;
+
   z-index: 1;
 
   padding: 56px 30px;
 
   opacity: 0;
+
   transform: translateY(18px);
 }
 
@@ -407,7 +457,7 @@ a {
 
 .panel {
   border-top:
-    1px solid rgba(155, 101, 114, 0.22);
+    1px solid rgba(168, 117, 130, 0.18);
 }
 
 .section__eyebrow {
@@ -468,6 +518,7 @@ a {
 
 .ornament__svg {
   width: 140px;
+
   height: 26px;
 }
 
@@ -505,11 +556,13 @@ a {
 
 .ring-motif__svg {
   width: 90px;
+
   height: 46px;
 }
 
 .ring-motif__svg--sm {
   width: 70px;
+
   height: 36px;
 }
 
@@ -561,6 +614,7 @@ a {
   display: inline-flex;
 
   align-items: center;
+
   justify-content: center;
 
   gap: 9px;
@@ -579,7 +633,8 @@ a {
 
   cursor: pointer;
 
-  border: 1px solid transparent;
+  border:
+    1px solid transparent;
 
   transition:
     transform 0.2s ease,
@@ -588,24 +643,34 @@ a {
 }
 
 .btn--primary {
-  background: var(--pink-dark);
+  background:
+    linear-gradient(
+      135deg,
+      #8A5361,
+      #A06B79
+    );
 
   color: #FFFFFF;
 
-  border-color: var(--pink-dark);
+  border-color: #8A5361;
 }
 
 .btn--primary:hover {
-  background: var(--pink-deep);
+  background:
+    linear-gradient(
+      135deg,
+      #75404F,
+      #8A5361
+    );
 
   transform: translateY(-1px);
 
   box-shadow:
-    0 8px 20px rgba(90, 48, 59, 0.22);
+    0 8px 20px rgba(117, 64, 79, 0.18);
 }
 
 .btn--outline {
-  background: transparent;
+  background: rgba(255,255,255,0.5);
 
   color: var(--pink-dark);
 
@@ -613,13 +678,15 @@ a {
 }
 
 .btn--outline:hover {
-  background: rgba(194, 141, 153, 0.09);
+  background:
+    rgba(249, 232, 235, 0.65);
 
   transform: translateY(-1px);
 }
 
 .icon-sm {
   width: 17px;
+
   height: 17px;
 
   flex-shrink: 0;
@@ -627,6 +694,7 @@ a {
 
 .icon-lg {
   width: 44px;
+
   height: 44px;
 }
 
@@ -658,7 +726,15 @@ a {
 
   position: relative;
 
-  background: rgba(255,255,255,0.25);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.75),
+      rgba(252,239,241,0.7)
+    );
+
+  box-shadow:
+    0 8px 24px rgba(117, 64, 79, 0.06);
 }
 
 .calendar-card__frame::before,
@@ -668,6 +744,7 @@ a {
   position: absolute;
 
   width: 10px;
+
   height: 10px;
 
   border:
@@ -676,17 +753,21 @@ a {
 
 .calendar-card__frame::before {
   top: -6px;
+
   left: -6px;
 
   border-right: none;
+
   border-bottom: none;
 }
 
 .calendar-card__frame::after {
   bottom: -6px;
+
   right: -6px;
 
   border-left: none;
+
   border-top: none;
 }
 
@@ -878,7 +959,7 @@ a {
   position: relative;
 
   border-left:
-    1px solid rgba(194, 141, 153, 0.5);
+    1px solid rgba(209, 163, 173, 0.6);
 }
 
 .timeline__item {
@@ -901,13 +982,15 @@ a {
   top: 4px;
 
   width: 9px;
+
   height: 9px;
 
   border-radius: 50%;
 
   background: var(--rose);
 
-  border: 2px solid var(--ivory);
+  border:
+    2px solid var(--ivory);
 
   box-shadow:
     0 0 0 1px var(--rose);
@@ -939,10 +1022,10 @@ a {
   margin-left: -18px;
 
   background:
-    rgba(194, 141, 153, 0.08);
+    rgba(249, 232, 235, 0.55);
 
   border:
-    1px solid rgba(194, 141, 153, 0.35);
+    1px solid rgba(209, 163, 173, 0.4);
 
   border-radius: var(--radius);
 }
@@ -951,12 +1034,13 @@ a {
   left: -35px;
 
   width: 13px;
+
   height: 13px;
 
   background: var(--rose);
 
   box-shadow:
-    0 0 0 3px rgba(194, 141, 153, 0.18);
+    0 0 0 3px rgba(209, 163, 173, 0.18);
 }
 
 .timeline__item--highlight .timeline__label {
@@ -975,6 +1059,7 @@ a {
 
 .timeline__rings svg {
   width: 46px;
+
   height: 24px;
 }
 
@@ -1030,8 +1115,9 @@ a {
   background:
     linear-gradient(
       145deg,
-      #F9EDEF,
-      #F5E4E7
+      #FCEFF1,
+      #F8E5E9,
+      #FFF7F8
     );
 }
 
@@ -1137,6 +1223,7 @@ a {
 
 .social-icon {
   width: 42px;
+
   height: 42px;
 
   border-radius: 50%;
@@ -1147,6 +1234,7 @@ a {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   color: var(--pink-dark);
@@ -1158,7 +1246,7 @@ a {
 
 .social-icon:hover {
   background:
-    rgba(194, 141, 153, 0.12);
+    rgba(249, 232, 235, 0.7);
 
   transform: translateY(-2px);
 }
@@ -1173,7 +1261,7 @@ a {
   padding: 50px 30px 30px;
 
   border-top:
-    1px solid rgba(155, 101, 114, 0.22);
+    1px solid rgba(168, 117, 130, 0.18);
 }
 
 .footer__ornament {
@@ -1188,6 +1276,7 @@ a {
 
 .footer__svg {
   width: 60px;
+
   height: 30px;
 }
 
@@ -1218,8 +1307,9 @@ a {
   background:
     linear-gradient(
       145deg,
-      #5A303B,
-      #70404C
+      #EACDD3,
+      #F4E0E4,
+      #FFFFFF
     );
 }
 
@@ -1231,7 +1321,9 @@ a {
   position: fixed;
 
   left: 0;
+
   right: 0;
+
   bottom: 0;
 
   z-index: 40;
@@ -1268,10 +1360,10 @@ a {
   height: var(--nav-h);
 
   background:
-    rgba(90, 48, 59, 0.96);
+    rgba(117, 64, 79, 0.94);
 
   border-top:
-    1px solid rgba(216, 195, 165, 0.35);
+    1px solid rgba(216, 195, 165, 0.45);
 
   display: flex;
 
@@ -1280,9 +1372,9 @@ a {
   justify-content: space-around;
 
   box-shadow:
-    0 -8px 24px rgba(40, 15, 22, 0.25);
+    0 -8px 24px rgba(117, 64, 79, 0.15);
 
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .bottom-nav__item {
@@ -1297,7 +1389,7 @@ a {
   gap: 4px;
 
   color:
-    rgba(255, 255, 255, 0.65);
+    rgba(255, 255, 255, 0.7);
 
   font-size: 0.68rem;
 
@@ -1318,6 +1410,7 @@ a {
 
 .bottom-nav__icon {
   width: 21px;
+
   height: 21px;
 }
 
@@ -1329,7 +1422,7 @@ a {
   color: #FFFFFF;
 
   background:
-    rgba(194, 141, 153, 0.18);
+    rgba(209, 163, 173, 0.22);
 }
 
 /* ==========================================================
@@ -1342,9 +1435,10 @@ a {
     background:
       linear-gradient(
         145deg,
-        #5A303B,
-        #754351,
-        #68404A
+        #EBCFD5 0%,
+        #F5E1E5 30%,
+        #FCEFF1 65%,
+        #FFFFFF 100%
       );
   }
 
@@ -1354,10 +1448,10 @@ a {
 
   .card {
     box-shadow:
-      0 40px 100px rgba(40, 15, 22, 0.45);
+      0 40px 100px rgba(117, 64, 79, 0.16);
 
     border:
-      1px solid rgba(194, 141, 153, 0.25);
+      1px solid rgba(209, 163, 173, 0.25);
   }
 
   .cover {
@@ -1374,11 +1468,13 @@ a {
   position: fixed;
 
   width: 1px;
+
   height: 1px;
 
   overflow: hidden;
 
   bottom: 0;
+
   right: 0;
 
   opacity: 0;
@@ -1390,11 +1486,13 @@ a {
   position: fixed;
 
   top: 18px;
+
   right: 18px;
 
   z-index: 50;
 
   width: 44px;
+
   height: 44px;
 
   border-radius: 50%;
@@ -1403,21 +1501,22 @@ a {
     1px solid var(--gold-light);
 
   background:
-    rgba(90, 48, 59, 0.75);
+    rgba(117, 64, 79, 0.72);
 
   color: #FFFFFF;
 
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   cursor: pointer;
 
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 
   box-shadow:
-    0 6px 18px rgba(40, 15, 22, 0.25);
+    0 6px 18px rgba(117, 64, 79, 0.16);
 
   transition:
     background 0.3s ease,
@@ -1426,13 +1525,14 @@ a {
 
 .music-toggle:hover {
   background:
-    rgba(90, 48, 59, 0.92);
+    rgba(117, 64, 79, 0.88);
 
   transform: translateY(-1px);
 }
 
 .music-toggle__icon {
   width: 20px;
+
   height: 20px;
 }
 
