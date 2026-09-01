@@ -10,32 +10,25 @@ const eventData = {
   day: "Sabtu",
   time: "11:00 AM – 3:00 PM",
   timeDisplay: "11:00 Pagi – 3:00 Petang",
-  venue: "Lebuh Sungai Senam",
-  address: "Lebuh Sungai Senam, Ipoh, Perak, Malaysia",
-  calDay: "5",
-  calMonth: "September",
-  calYear: "2026",
-  calWeekday: "Sabtu"
+  venue: "203 Lebuh Sungai Senam",
+  address: "203 Lebuh Sungai Senam, Taman Ipoh, 31400 Ipoh, Perak, Malaysia"
 };
 
 const contactData = {
-  name: "Irfan bin Idris",
-  role: "Pengantin",
-  phone: "017-405 0734",
-  phoneInternational: "+60174050734",
-  whatsapp: "60174050734"
+  name: "Fatin Nur Dayana",
+  phone: "017-245 4394",
+  phoneInternational: "+60172454394",
+  whatsapp: "60172454394"
 };
 
 const locationData = {
-  name: "Lebuh Sungai Senam",
-  address: "Lebuh Sungai Senam, Ipoh, Perak, Malaysia",
+  name: "203 Lebuh Sungai Senam",
+  address: "203 Lebuh Sungai Senam, Taman Ipoh, 31400 Ipoh, Perak, Malaysia",
   googleMaps:
-    "https://www.google.com/maps/search/?api=1&query=Lebuh+Sungai+Senam,+Ipoh,+Perak,+Malaysia",
+    "https://www.google.com/maps/search/?api=1&query=203+Lebuh+Sungai+Senam,+Taman+Ipoh,+31400+Ipoh,+Perak,+Malaysia",
   waze:
-    "https://www.waze.com/ul?q=Lebuh%20Sungai%20Senam%2C%20Ipoh%2C%20Perak%2C%20Malaysia"
+    "https://www.waze.com/ul?q=203%20Lebuh%20Sungai%20Senam%2C%20Taman%20Ipoh%2C%2031400%20Ipoh%2C%20Perak%2C%20Malaysia"
 };
-
-const rsvpUrl = "YOUR_RSVP_LINK_HERE";
 
 const socialLinks = {
   facebook: "https://facebook.com/",
@@ -51,33 +44,8 @@ const tentatif = [
     label: "Acara Sarong Cincin",
     highlight: true
   },
-  { time: "1:00 Petang", label: "Jamuan" },
-  { time: "2:30 Petang", label: "Sesi Bergambar" },
-  { time: "3:00 Petang", label: "Bersurai" }
+  { time: "1:00 Petang", label: "Jamuan" }
 ];
-
-
-/* ==========================================================
-   Google Calendar URL builder
-   ========================================================== */
-
-function buildGoogleCalendarUrl() {
-  // Edit these to change the exact calendar event timing.
-  const startDate = "20260905T110000";
-  const endDate = "20260905T150000";
-
-  const title = encodeURIComponent(
-    `${eventData.eventName} — ${eventData.couple}`
-  );
-
-  const details = encodeURIComponent(
-    `Jemputan ${eventData.eventName}`
-  );
-
-  const location = encodeURIComponent(locationData.address);
-
-  return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
-}
 
 
 /* ==========================================================
@@ -96,30 +64,6 @@ function populateContent() {
 
   document.getElementById("eventTimeHero").textContent =
     eventData.timeDisplay;
-
-
-  /* Calendar */
-
-  document.getElementById("calDay").textContent =
-    eventData.calDay;
-
-  document.getElementById("calMonth").textContent =
-    eventData.calMonth;
-
-  document.getElementById("calYear").textContent =
-    eventData.calYear;
-
-  document.getElementById("calWeekday").textContent =
-    eventData.calWeekday;
-
-  document.getElementById("calEventName").textContent =
-    eventData.eventName;
-
-  document.getElementById("calTime").textContent =
-    eventData.timeDisplay;
-
-  document.getElementById("gcalBtn").href =
-    buildGoogleCalendarUrl();
 
 
   /* Location */
@@ -142,9 +86,6 @@ function populateContent() {
   document.getElementById("contactName").textContent =
     contactData.name;
 
-  document.getElementById("contactRole").textContent =
-    contactData.role;
-
   document.getElementById("contactPhoneDisplay").textContent =
     contactData.phone;
 
@@ -153,12 +94,6 @@ function populateContent() {
 
   document.getElementById("whatsappBtn").href =
     `https://wa.me/${contactData.whatsapp}`;
-
-
-  /* RSVP */
-
-  document.getElementById("rsvpBtn").href =
-    rsvpUrl;
 
 
   /* Social Links */
@@ -477,7 +412,6 @@ function initScrollReveal() {
 function initActiveNav() {
 
   const sections = [
-    "kalendar",
     "arah",
     "hubungi",
     "acara"
