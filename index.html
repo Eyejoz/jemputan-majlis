@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Majlis Sarong Cincin — Fatin & Ameerul</title>
+<meta name="description" content="Jemputan Majlis Sarong Cincin — Fatin & Ameerul, 5 September 2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section id="cover" class="cover">
+  <div class="cover__frame">
+    <div class="cover-art" role="img" aria-label="Kad jemputan Majlis Sarong Cincin, Fatin & Ameerul, 5/9/2026">
+      <p class="cover-art__bismillah" lang="ar" dir="rtl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</p>
+      <p class="cover-art__title">Majlis Sarong Cincin</p>
+
+      <div class="cover-art__motif" aria-hidden="true">
+        <svg viewBox="0 0 340 210" class="cover-art__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+            <g id="coverFlower">
+              <path d="M0 92 C -3 62 -3 30 0 0" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M0 58 C -20 52 -29 39 -22 26 C -15 35 -6 44 0 58 Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+              <g transform="translate(0,-4)">
+                <ellipse cx="0" cy="-15" rx="9" ry="16" fill="none" stroke="currentColor" stroke-width="1.1"/>
+                <ellipse cx="0" cy="-15" rx="9" ry="16" fill="none" stroke="currentColor" stroke-width="1.1" transform="rotate(72 0 0)"/>
+                <ellipse cx="0" cy="-15" rx="9" ry="16" fill="none" stroke="currentColor" stroke-width="1.1" transform="rotate(144 0 0)"/>
+                <ellipse cx="0" cy="-15" rx="9" ry="16" fill="none" stroke="currentColor" stroke-width="1.1" transform="rotate(216 0 0)"/>
+                <ellipse cx="0" cy="-15" rx="9" ry="16" fill="none" stroke="currentColor" stroke-width="1.1" transform="rotate(288 0 0)"/>
+                <circle cx="0" cy="0" r="4" fill="none" stroke="currentColor" stroke-width="1.1"/>
+              </g>
+            </g>
+          </defs>
+
+          <use href="#coverFlower" xlink:href="#coverFlower" transform="translate(46,152) scale(0.85)"/>
+          <use href="#coverFlower" xlink:href="#coverFlower" transform="translate(294,152) scale(-0.85,0.85)"/>
+
+          <path class="cover-art__heart" d="M170 58
+                   C 148 16 96 18 78 54
+                   C 58 92 100 142 170 192
+                   C 240 142 282 92 262 54
+                   C 244 18 192 16 170 58 Z"
+                fill="none" stroke="currentColor" stroke-width="2.2"/>
+
+          <g class="cover-art__rings" transform="translate(170,112)">
+            <circle cx="-15" cy="2" r="21" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="15" cy="2" r="21" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M-46 24 Q0 4 46 24" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.65"/>
+          </g>
+        </svg>
+      </div>
+
+      <p class="cover-art__names" lang="ar" dir="rtl" id="coverNamesAr">فاتن &amp; اميرول</p>
+      <p class="cover-art__date" id="coverDate">5 / 9 / 2026</p>
+    </div>
+  </div>
+  <button id="openInvite" class="btn-open" aria-label="Buka jemputan">
+    <span>Buka Jemputan</span>
+  </button>
+</section>
+
+<!-- ================= MAIN INVITATION ================= -->
+<main id="invitation" class="invitation" hidden>
+
+  <div class="card">
+
+    <!-- Pattern overlay -->
+    <div class="pattern-overlay" aria-hidden="true"></div>
+
+    <!-- Hero -->
+    <section class="section hero" data-reveal>
+      <p class="eyebrow-line">Bismillahirrahmanirrahim</p>
+      <p class="hero__intro">Dengan penuh kesyukuran dan sukacita</p>
+
+      <div class="ornament ornament--top" aria-hidden="true">
+        <svg viewBox="0 0 200 40" class="ornament__svg"><path d="M0 20 Q 50 0 100 20 T 200 20" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="100" cy="20" r="3" fill="currentColor"/></svg>
+      </div>
+
+      <h1 class="hero__title" id="eventNameHero">Majlis Sarong Cincin</h1>
+
+      <div class="ring-motif" aria-hidden="true">
+        <svg viewBox="0 0 120 60" class="ring-motif__svg">
+          <circle cx="45" cy="30" r="22" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="75" cy="30" r="22" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <h2 class="hero__names" id="coupleNamesHero">Fatin &amp; Ameerul</h2>
+
+      <div class="hero__date-block">
+        <p class="hero__date" id="eventDateHero">5 September 2026</p>
+        <p class="hero__time" id="eventTimeHero">11:00 Pagi – 3:00 Petang</p>
+      </div>
+
+      <div class="ornament ornament--bottom" aria-hidden="true">
+        <svg viewBox="0 0 200 40" class="ornament__svg"><path d="M0 20 Q 50 40 100 20 T 200 20" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="100" cy="20" r="3" fill="currentColor"/></svg>
+      </div>
+    </section>
+
+    <!-- ================= KALENDAR ================= -->
+    <section id="kalendar" class="section panel" data-reveal>
+      <p class="section__eyebrow">Kalendar</p>
+      <div class="calendar-card">
+        <div class="calendar-card__frame">
+          <span class="calendar-card__day" id="calDay">5</span>
+          <span class="calendar-card__month" id="calMonth">September</span>
+          <span class="calendar-card__year" id="calYear">2026</span>
+          <span class="calendar-card__weekday" id="calWeekday">Sabtu</span>
+        </div>
+        <p class="calendar-card__event" id="calEventName">Majlis Sarong Cincin</p>
+        <p class="calendar-card__time" id="calTime">11:00 Pagi – 3:00 Petang</p>
+        <a href="#" id="gcalBtn" target="_blank" rel="noopener" class="btn btn--primary">Tambah ke Google Calendar</a>
+      </div>
+    </section>
+
+    <!-- ================= ARAH / LOKASI ================= -->
+    <section id="arah" class="section panel" data-reveal>
+      <p class="section__eyebrow">Lokasi Majlis</p>
+      <div class="location-card">
+        <div class="location-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" class="icon-lg"><path d="M24 4C15.7 4 9 10.7 9 19c0 11 15 25 15 25s15-14 15-25c0-8.3-6.7-15-15-15z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="24" cy="19" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <p class="location-card__name" id="locName">Lebuh Sungai Senam</p>
+        <p class="location-card__address" id="locAddress">Lebuh Sungai Senam,<br>Ipoh, Perak, Malaysia</p>
+        <div class="location-card__actions">
+          <a href="#" id="wazeBtn" target="_blank" rel="noopener" class="btn btn--outline">
+            <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.4" fill="currentColor"/></svg>
+            Waze
+          </a>
+          <a href="#" id="gmapsBtn" target="_blank" rel="noopener" class="btn btn--outline">
+            <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.4" fill="currentColor"/></svg>
+            Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HUBUNGI ================= -->
+    <section id="hubungi" class="section panel" data-reveal>
+      <p class="section__eyebrow">Hubungi</p>
+      <div class="contact-card">
+        <p class="contact-card__name" id="contactName">ME</p>
+        <p class="contact-card__role" id="contactRole">Pengantin</p>
+        <p class="contact-card__phone" id="contactPhoneDisplay">017-405 0734</p>
+        <div class="contact-card__actions">
+          <a href="#" id="callBtn" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z" fill="currentColor"/></svg>
+            Call
+          </a>
+          <a href="#" id="whatsappBtn" target="_blank" rel="noopener" class="btn btn--outline">
+            <svg viewBox="0 0 24 24" class="icon-sm" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2 1 2.4.1.2 1.6 2.4 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z" fill="currentColor"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACARA / TENTATIF ================= -->
+    <section id="acara" class="section panel" data-reveal>
+      <p class="section__eyebrow">Tentatif</p>
+      <ol class="timeline" id="timelineList" aria-label="Tentatif majlis"></ol>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section panel" data-reveal>
+      <div class="about">
+        <div class="about__ornament" aria-hidden="true">
+          <svg viewBox="0 0 120 60" class="ring-motif__svg ring-motif__svg--sm">
+            <circle cx="45" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="75" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <h3 class="about__title">Seuntai Kasih, Sebuah Ikatan</h3>
+        <p class="about__text">Majlis Sarong Cincin merupakan salah satu adat Melayu yang menjadi simbolik kepada ikatan pertunangan. Dalam suasana penuh kesyukuran dan kasih sayang, kedua-dua keluarga berkumpul bagi meraikan satu langkah baharu dalam perjalanan pasangan menuju alam perkahwinan.</p>
+      </div>
+    </section>
+
+    <!-- ================= DOA ================= -->
+    <section class="section panel panel--doa" data-reveal>
+      <div class="doa">
+        <div class="doa__border" aria-hidden="true"></div>
+        <p class="doa__bismillah">Bismillahirrahmanirrahim</p>
+        <p class="doa__text">Semoga ikatan yang dibina dipermudahkan, diberkati dan sentiasa berada dalam rahmat Allah SWT.</p>
+      </div>
+    </section>
+
+    <!-- ================= RSVP ================= -->
+    <section class="section panel" data-reveal>
+      <div class="rsvp">
+        <p class="section__eyebrow">Kehadiran</p>
+        <p class="rsvp__text">Kehadiran dan doa restu anda amat kami hargai.</p>
+        <a href="#" id="rsvpBtn" target="_blank" rel="noopener" class="btn btn--primary">Sahkan Kehadiran</a>
+      </div>
+    </section>
+
+    <!-- ================= SOCIAL ================= -->
+    <section class="section panel panel--social" data-reveal>
+      <p class="section__eyebrow">Dapatkan Kad Digital Anda</p>
+      <div class="social-row">
+        <a href="#" id="fbBtn" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M13.5 22v-8.4h2.8l.4-3.3h-3.2V8.1c0-1 .3-1.6 1.7-1.6h1.6V3.5C16.5 3.4 15.4 3.3 14.2 3.3c-2.5 0-4.3 1.5-4.3 4.4v2.6H7v3.3h2.9V22h3.6z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" id="igBtn" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+          <svg viewBox="0 0 24 24" class="icon-sm"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" id="waSocialBtn" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon">
+          <svg viewBox="0 0 24 24" class="icon-sm"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer" data-reveal>
+      <div class="footer__ornament" aria-hidden="true">
+        <svg viewBox="0 0 80 40" class="footer__svg"><path d="M40 6 C 30 6 25 14 25 20 C 25 26 30 34 40 34 C 50 34 55 26 55 20 C 55 14 50 6 40 6 Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      </div>
+      <p class="footer__thanks">Terima kasih atas doa dan kehadiran anda.</p>
+      <p class="footer__names">Fatin &amp; Ameerul</p>
+    </footer>
+
+  </div><!-- /.card -->
+
+  <div class="bottom-pad" aria-hidden="true"></div>
+</main>
+
+<!-- ================= BOTTOM NAV ================= -->
+<nav class="bottom-nav" id="bottomNav" hidden aria-label="Navigasi jemputan">
+  <div class="bottom-nav__inner">
+    <a href="#kalendar" class="bottom-nav__item" data-target="kalendar">
+      <svg viewBox="0 0 24 24" class="bottom-nav__icon"><rect x="3.5" y="5" width="17" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Kalendar</span>
+    </a>
+    <a href="#arah" class="bottom-nav__item" data-target="arah">
+      <svg viewBox="0 0 24 24" class="bottom-nav__icon"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span>Arah</span>
+    </a>
+    <a href="#hubungi" class="bottom-nav__item" data-target="hubungi">
+      <svg viewBox="0 0 24 24" class="bottom-nav__icon"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      <span>Hubungi</span>
+    </a>
+    <a href="#acara" class="bottom-nav__item" data-target="acara">
+      <svg viewBox="0 0 24 24" class="bottom-nav__icon"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+      <span>Acara</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Hidden YouTube player used purely as the background-music engine -->
+<div id="ytPlayer" class="yt-player" aria-hidden="true"></div>
+
+<button id="musicToggle" class="music-toggle" hidden aria-label="Senyapkan/mainkan muzik">
+  <svg viewBox="0 0 24 24" class="music-toggle__icon music-toggle__icon--on" aria-hidden="true">
+    <path d="M9 17V6.5l10-2v10.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="6.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="16.5" cy="15.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+  <svg viewBox="0 0 24 24" class="music-toggle__icon music-toggle__icon--off" aria-hidden="true">
+    <path d="M9 17V6.5l10-2v10.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="6.5" cy="17.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="16.5" cy="15.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
