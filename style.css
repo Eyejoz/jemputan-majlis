@@ -35,6 +35,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 20px;
 }
 
 body {
@@ -42,9 +43,6 @@ body {
   font-family: var(--font-body);
   color: var(--ink);
 
-  /* ========================================================
-     LIGHT PINK → WHITE GRADIENT
-     ======================================================== */
   background:
     linear-gradient(
       135deg,
@@ -68,6 +66,7 @@ a {
   text-decoration: none;
 }
 
+
 /* ==========================================================
    ACCESSIBILITY
    ========================================================== */
@@ -82,6 +81,7 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
 
 /* ==========================================================
    COVER
@@ -108,7 +108,52 @@ a {
   padding: 6vh 20px 40px;
   position: relative;
   gap: 32px;
+
+  overflow: hidden;
 }
+
+
+/* Soft light behind cover */
+
+.cover::before {
+  content: "";
+
+  position: absolute;
+  width: 380px;
+  height: 380px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.75),
+      rgba(255,255,255,0) 70%
+    );
+
+  pointer-events: none;
+
+  animation:
+    coverGlow 5s ease-in-out infinite;
+}
+
+@keyframes coverGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 1;
+  }
+}
+
 
 .cover__frame {
   width: 100%;
@@ -117,20 +162,34 @@ a {
   opacity: 0;
 
   animation:
-    coverFadeIn 1.4s ease 0.15s forwards;
+    coverFadeIn
+    1.4s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.15s
+    forwards;
+
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes coverFadeIn {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.98);
+    transform:
+      translateY(25px)
+      scale(0.96);
+    filter: blur(5px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
   }
 }
+
 
 /* ==========================================================
    COVER ART
@@ -159,6 +218,13 @@ a {
 
   text-shadow:
     0 1px 1px rgba(255,255,255,0.7);
+
+  animation:
+    textFloatIn
+    1s
+    ease
+    0.35s
+    both;
 }
 
 .cover-art__title {
@@ -175,21 +241,32 @@ a {
   color: var(--pink-dark);
 
   margin: 2px 0 0;
+
+  animation:
+    textFloatIn
+    1s
+    ease
+    0.5s
+    both;
 }
 
 .cover-art__motif {
   width: 100%;
 
   display: flex;
-
   justify-content: center;
+
+  animation:
+    motifReveal
+    1.4s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.55s
+    both;
 }
 
 .cover-art__svg {
   width: 100%;
-
   max-width: 260px;
-
   height: auto;
 
   color: var(--gold);
@@ -199,15 +276,37 @@ a {
 
 .cover-art__svg .cover-art__heart {
   stroke: var(--rose);
+
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+
+  animation:
+    drawHeart
+    2s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.7s
+    forwards;
 }
 
 .cover-art__svg .cover-art__rings {
   color: var(--gold);
+
+  transform-origin: 0px 2px;
+
+  animation:
+    ringEntrance
+    1.4s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    1s
+    both;
+}
+
+.cover-art__svg use {
+  transform-box: fill-box;
 }
 
 .cover-art__names {
   font-family: 'Aref Ruqaa', serif;
-
   font-weight: 700;
 
   font-size:
@@ -219,6 +318,13 @@ a {
 
   text-shadow:
     0 1px 1px rgba(255,255,255,0.7);
+
+  animation:
+    textFloatIn
+    1s
+    ease
+    1.15s
+    both;
 }
 
 .cover-art__date {
@@ -233,7 +339,76 @@ a {
   opacity: 0.9;
 
   margin: 0;
+
+  animation:
+    textFloatIn
+    1s
+    ease
+    1.3s
+    both;
 }
+
+@keyframes textFloatIn {
+  from {
+    opacity: 0;
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes motifReveal {
+  from {
+    opacity: 0;
+    transform:
+      scale(0.8)
+      rotate(-3deg);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      scale(1)
+      rotate(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes drawHeart {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ringEntrance {
+  from {
+    opacity: 0;
+    transform:
+      scale(0.65)
+      rotate(-8deg);
+  }
+
+  65% {
+    opacity: 1;
+    transform:
+      scale(1.08)
+      rotate(2deg);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
 
 /* ==========================================================
    OPEN BUTTON
@@ -274,11 +449,15 @@ a {
   opacity: 0;
 
   animation:
-    btnFadeIn 1.2s ease 1s forwards;
+    btnFadeIn
+    1.2s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    1.55s
+    forwards;
 
   transition:
     background 0.35s ease,
-    transform 0.25s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s ease;
 }
 
@@ -290,39 +469,73 @@ a {
       #A87582
     );
 
-  transform: translateY(-2px);
+  transform:
+    translateY(-3px)
+    scale(1.02);
 
   box-shadow:
-    0 14px 30px rgba(117, 64, 79, 0.24);
+    0 16px 34px rgba(117, 64, 79, 0.28);
 }
 
 .btn-open:active {
-  transform: translateY(0);
+  transform:
+    translateY(0)
+    scale(0.98);
 }
 
 @keyframes btnFadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+
+    transform:
+      translateY(18px)
+      scale(0.96);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 }
+
+
+/* ==========================================================
+   COVER LEAVE
+   ========================================================== */
 
 .cover.is-leaving {
   animation:
-    coverLeave 0.7s ease forwards;
+    coverLeave
+    0.8s
+    cubic-bezier(0.76, 0, 0.24, 1)
+    forwards;
 }
 
 @keyframes coverLeave {
-  to {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+
+  45% {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: blur(0);
+  }
+
+  100% {
     opacity: 0;
-    transform: scale(0.97);
+    transform:
+      scale(1.06)
+      translateY(-10px);
+    filter: blur(7px);
   }
 }
+
 
 /* ==========================================================
    INVITATION SHELL
@@ -348,7 +561,7 @@ a {
 .invitation.is-entering .card {
   animation:
     cardEnter
-    0.9s
+    1s
     cubic-bezier(0.22, 1, 0.36, 1)
     forwards;
 }
@@ -356,14 +569,25 @@ a {
 @keyframes cardEnter {
   from {
     opacity: 0;
-    transform: translateY(24px);
+
+    transform:
+      translateY(35px)
+      scale(0.985);
+
+    filter: blur(5px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter: blur(0);
   }
 }
+
 
 /* ==========================================================
    MAIN CARD
@@ -394,6 +618,7 @@ a {
   border-right:
     1px solid rgba(209, 163, 173, 0.28);
 }
+
 
 /* ==========================================================
    PATTERN
@@ -427,8 +652,9 @@ a {
   z-index: 0;
 }
 
+
 /* ==========================================================
-   SECTIONS
+   LUXURY SECTION REVEALS
    ========================================================== */
 
 .section {
@@ -440,25 +666,153 @@ a {
 
   opacity: 0;
 
-  transform: translateY(18px);
+  transform:
+    translateY(45px)
+    scale(0.965);
+
+  filter: blur(3px);
+
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s ease;
 }
 
 .section.is-visible {
-  animation:
-    sectionReveal 0.8s ease forwards;
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  filter: blur(0);
 }
 
-@keyframes sectionReveal {
-  to {
+
+/* ==========================================================
+   STAGGER SECTION CONTENT
+   ========================================================== */
+
+.section > * {
+  opacity: 0;
+
+  transform:
+    translateY(22px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section.is-visible > * {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+.section.is-visible > *:nth-child(1) {
+  transition-delay: 0.08s;
+}
+
+.section.is-visible > *:nth-child(2) {
+  transition-delay: 0.18s;
+}
+
+.section.is-visible > *:nth-child(3) {
+  transition-delay: 0.28s;
+}
+
+.section.is-visible > *:nth-child(4) {
+  transition-delay: 0.38s;
+}
+
+.section.is-visible > *:nth-child(5) {
+  transition-delay: 0.48s;
+}
+
+
+/* ==========================================================
+   ORNAMENT FLOURISH
+   ========================================================== */
+
+.section.is-visible .ornament__svg,
+.section.is-visible .ring-motif__svg,
+.section.is-visible .about__ornament svg {
+  animation:
+    ornamentFloat
+    1.5s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.45s
+    both;
+}
+
+@keyframes ornamentFloat {
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.7)
+      rotate(-4deg);
+  }
+
+  60% {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      scale(1.06)
+      rotate(1deg);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0);
   }
 }
+
+
+/* ==========================================================
+   RING DRAW EFFECT
+   ========================================================== */
+
+.ring-motif__svg circle {
+  stroke-dasharray: 140;
+
+  stroke-dashoffset: 140;
+}
+
+.section.is-visible .ring-motif__svg circle {
+  animation:
+    drawRing
+    1.4s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.35s
+    forwards;
+}
+
+@keyframes drawRing {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+/* ==========================================================
+   PANEL
+   ========================================================== */
 
 .panel {
   border-top:
     1px solid rgba(168, 117, 130, 0.18);
 }
+
+
+/* ==========================================================
+   SECTION EYEBROW
+   ========================================================== */
 
 .section__eyebrow {
   font-family: var(--font-display);
@@ -475,6 +829,7 @@ a {
 
   font-weight: 500;
 }
+
 
 /* ==========================================================
    HERO
@@ -606,6 +961,7 @@ a {
   margin: 0;
 }
 
+
 /* ==========================================================
    BUTTONS
    ========================================================== */
@@ -637,8 +993,8 @@ a {
     1px solid transparent;
 
   transition:
-    transform 0.2s ease,
-    box-shadow 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
     background 0.3s ease;
 }
 
@@ -663,14 +1019,17 @@ a {
       #8A5361
     );
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-3px)
+    scale(1.01);
 
   box-shadow:
-    0 8px 20px rgba(117, 64, 79, 0.18);
+    0 10px 25px rgba(117, 64, 79, 0.22);
 }
 
 .btn--outline {
-  background: rgba(255,255,255,0.5);
+  background:
+    rgba(255,255,255,0.5);
 
   color: var(--pink-dark);
 
@@ -681,7 +1040,11 @@ a {
   background:
     rgba(249, 232, 235, 0.65);
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(117, 64, 79, 0.08);
 }
 
 .icon-sm {
@@ -697,6 +1060,7 @@ a {
 
   height: 44px;
 }
+
 
 /* ==========================================================
    KALENDAR
@@ -833,8 +1197,9 @@ a {
   margin: 0 0 28px;
 }
 
+
 /* ==========================================================
-   LOKASI
+   LOCATION
    ========================================================== */
 
 .location-card {
@@ -883,8 +1248,45 @@ a {
   margin: 0 auto;
 }
 
+
 /* ==========================================================
-   HUBUNGI
+   LOCATION ICON FLOURISH
+   ========================================================== */
+
+.section.is-visible .location-card__icon svg {
+  animation:
+    locationDrop
+    0.9s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.3s
+    both;
+}
+
+@keyframes locationDrop {
+  from {
+    opacity: 0;
+    transform:
+      translateY(-18px)
+      scale(0.8);
+  }
+
+  65% {
+    transform:
+      translateY(3px)
+      scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* ==========================================================
+   CONTACT
    ========================================================== */
 
 .contact-card {
@@ -943,6 +1345,7 @@ a {
   min-width: 130px;
 }
 
+
 /* ==========================================================
    TIMELINE
    ========================================================== */
@@ -966,10 +1369,42 @@ a {
   position: relative;
 
   padding-bottom: 32px;
+
+  opacity: 0;
+
+  transform:
+    translateX(25px);
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .timeline__item:last-child {
   padding-bottom: 0;
+}
+
+.section.is-visible .timeline__item {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+.section.is-visible .timeline__item:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.section.is-visible .timeline__item:nth-child(2) {
+  transition-delay: 0.35s;
+}
+
+.section.is-visible .timeline__item:nth-child(3) {
+  transition-delay: 0.5s;
+}
+
+.section.is-visible .timeline__item:nth-child(4) {
+  transition-delay: 0.65s;
 }
 
 .timeline__item::before {
@@ -994,6 +1429,53 @@ a {
 
   box-shadow:
     0 0 0 1px var(--rose);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.section.is-visible .timeline__item::before {
+  animation:
+    timelineDot
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.timeline__item:nth-child(1)::before {
+  animation-delay: 0.25s;
+}
+
+.timeline__item:nth-child(2)::before {
+  animation-delay: 0.4s;
+}
+
+.timeline__item:nth-child(3)::before {
+  animation-delay: 0.55s;
+}
+
+.timeline__item:nth-child(4)::before {
+  animation-delay: 0.7s;
+}
+
+@keyframes timelineDot {
+  from {
+    opacity: 0;
+    transform:
+      scale(0);
+  }
+
+  65% {
+    transform:
+      scale(1.35);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      scale(1);
+  }
 }
 
 .timeline__time {
@@ -1016,6 +1498,11 @@ a {
   margin: 0;
 }
 
+
+/* ==========================================================
+   HIGHLIGHTED TIMELINE EVENT
+   ========================================================== */
+
 .timeline__item--highlight {
   padding: 16px 18px;
 
@@ -1028,6 +1515,23 @@ a {
     1px solid rgba(209, 163, 173, 0.4);
 
   border-radius: var(--radius);
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+.timeline__item--highlight:hover {
+  transform:
+    translateX(5px)
+    scale(1.015);
+
+  box-shadow:
+    0 12px 30px rgba(117, 64, 79, 0.1);
+
+  background:
+    rgba(249, 232, 235, 0.72);
 }
 
 .timeline__item--highlight::before {
@@ -1062,6 +1566,52 @@ a {
 
   height: 24px;
 }
+
+.section.is-visible .timeline__rings {
+  animation:
+    ringFloat
+    1.4s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.8s
+    both;
+}
+
+@keyframes ringFloat {
+  from {
+    opacity: 0;
+    transform:
+      translateY(8px)
+      scale(0.75);
+  }
+
+  to {
+    opacity: 0.8;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+.timeline__item--highlight::before {
+  animation:
+    timelinePulse
+    2.4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes timelinePulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(209, 163, 173, 0.18);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(209, 163, 173, 0.04);
+  }
+}
+
 
 /* ==========================================================
    ABOUT
@@ -1107,6 +1657,7 @@ a {
   margin: 0;
 }
 
+
 /* ==========================================================
    DOA
    ========================================================== */
@@ -1142,6 +1693,12 @@ a {
     1px solid var(--rose-soft);
 
   opacity: 0.7;
+
+  transform:
+    scale(0.96);
+
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .doa__border::before {
@@ -1155,6 +1712,11 @@ a {
     1px solid var(--rose-soft);
 
   opacity: 0.45;
+}
+
+.section.is-visible .doa__border {
+  transform:
+    scale(1);
 }
 
 .doa__bismillah {
@@ -1183,6 +1745,7 @@ a {
   position: relative;
 }
 
+
 /* ==========================================================
    RSVP
    ========================================================== */
@@ -1198,6 +1761,7 @@ a {
 
   margin: 0 0 26px;
 }
+
 
 /* ==========================================================
    SOCIAL
@@ -1241,15 +1805,22 @@ a {
 
   transition:
     background 0.3s ease,
-    transform 0.2s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
 }
 
 .social-icon:hover {
   background:
     rgba(249, 232, 235, 0.7);
 
-  transform: translateY(-2px);
+  transform:
+    translateY(-5px)
+    scale(1.05);
+
+  box-shadow:
+    0 8px 20px rgba(117, 64, 79, 0.1);
 }
+
 
 /* ==========================================================
    FOOTER
@@ -1300,6 +1871,11 @@ a {
   margin: 0;
 }
 
+
+/* ==========================================================
+   BOTTOM PAD
+   ========================================================== */
+
 .bottom-pad {
   height:
     calc(var(--nav-h) + 16px);
@@ -1313,8 +1889,9 @@ a {
     );
 }
 
+
 /* ==========================================================
-   BOTTOM NAV
+   LUXURY FLOATING BOTTOM NAV
    ========================================================== */
 
 .bottom-nav {
@@ -1339,17 +1916,26 @@ a {
 
   opacity: 0;
 
-  transform: translateY(100%);
+  transform:
+    translateY(120px)
+    scale(0.96);
+
+  filter: blur(4px);
 
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease;
 }
 
 .bottom-nav.is-visible {
   opacity: 1;
 
-  transform: translateY(0);
+  transform:
+    translateY(0)
+    scale(1);
+
+  filter: blur(0);
 }
 
 .bottom-nav__inner {
@@ -1360,10 +1946,14 @@ a {
   height: var(--nav-h);
 
   background:
-    rgba(117, 64, 79, 0.94);
+    linear-gradient(
+      135deg,
+      rgba(117, 64, 79, 0.97),
+      rgba(92, 46, 59, 0.97)
+    );
 
   border-top:
-    1px solid rgba(216, 195, 165, 0.45);
+    1px solid rgba(216, 195, 165, 0.6);
 
   display: flex;
 
@@ -1372,12 +1962,48 @@ a {
   justify-content: space-around;
 
   box-shadow:
-    0 -8px 24px rgba(117, 64, 79, 0.15);
+    0 -12px 35px rgba(117, 64, 79, 0.22),
+    0 -2px 10px rgba(255,255,255,0.08);
 
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  position: relative;
 }
 
+
+/* Gold accent line */
+
+.bottom-nav__inner::before {
+  content: "";
+
+  position: absolute;
+
+  top: -1px;
+
+  left: 12%;
+
+  right: 12%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-light),
+      transparent
+    );
+
+  opacity: 0.85;
+}
+
+
+/* Navigation item */
+
 .bottom-nav__item {
+  position: relative;
+
   display: flex;
 
   flex-direction: column;
@@ -1386,44 +2012,159 @@ a {
 
   justify-content: center;
 
-  gap: 4px;
+  gap: 5px;
 
   color:
-    rgba(255, 255, 255, 0.7);
+    rgba(255, 255, 255, 0.68);
 
   font-size: 0.68rem;
 
   letter-spacing: 0.03em;
 
-  padding: 8px 14px;
+  padding: 8px 18px;
 
-  min-width: 60px;
+  min-width: 70px;
 
-  min-height: 48px;
+  min-height: 50px;
 
-  border-radius: var(--radius);
+  border-radius: 12px;
 
   transition:
-    color 0.3s ease,
-    background 0.3s ease;
+    color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
 }
+
+
+/* Navigation icon */
 
 .bottom-nav__icon {
   width: 21px;
 
   height: 21px;
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s ease;
 }
+
+
+/* Hover */
 
 .bottom-nav__item:hover {
   color: #FFFFFF;
+
+  transform:
+    translateY(-4px);
 }
+
+.bottom-nav__item:hover .bottom-nav__icon {
+  transform:
+    scale(1.12)
+    translateY(-1px);
+}
+
+
+/* Active */
 
 .bottom-nav__item.is-active {
   color: #FFFFFF;
 
   background:
-    rgba(209, 163, 173, 0.22);
+    linear-gradient(
+      135deg,
+      rgba(209, 163, 173, 0.25),
+      rgba(216, 195, 165, 0.12)
+    );
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+
+  transform:
+    translateY(-3px);
 }
+
+.bottom-nav__item.is-active .bottom-nav__icon {
+  transform:
+    translateY(-2px)
+    scale(1.12);
+
+  filter:
+    drop-shadow(
+      0 0 6px
+      rgba(216,195,165,0.55)
+    );
+}
+
+
+/* Gold dot under active item */
+
+.bottom-nav__item::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 3px;
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: var(--gold-light);
+
+  opacity: 0;
+
+  transform:
+    scale(0);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bottom-nav__item.is-active::after {
+  opacity: 1;
+
+  transform:
+    scale(1);
+}
+
+
+/* ==========================================================
+   NAV ARRIVAL EFFECT
+   ========================================================== */
+
+.section.nav-arrival {
+  animation:
+    navArrival
+    1s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes navArrival {
+  0% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  35% {
+    transform:
+      translateY(0)
+      scale(1.012);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
 
 /* ==========================================================
    DESKTOP
@@ -1459,6 +2200,7 @@ a {
       8vh 20px 40px;
   }
 }
+
 
 /* ==========================================================
    BACKGROUND MUSIC
@@ -1520,14 +2262,20 @@ a {
 
   transition:
     background 0.3s ease,
-    transform 0.2s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
 }
 
 .music-toggle:hover {
   background:
     rgba(117, 64, 79, 0.88);
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-2px)
+    scale(1.05);
+
+  box-shadow:
+    0 10px 24px rgba(117, 64, 79, 0.22);
 }
 
 .music-toggle__icon {
@@ -1550,6 +2298,7 @@ a {
   display: none;
 }
 
+
 /* ==========================================================
    FOCUS
    ========================================================== */
@@ -1560,4 +2309,212 @@ button:focus-visible {
     2px solid var(--rose-soft);
 
   outline-offset: 3px;
+}
+
+
+/* ==========================================================
+   ROSE PETAL PARTICLES
+   ========================================================== */
+
+#petalCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 60;
+}
+
+
+/* ==========================================================
+   SHIMMER TEXT — hero names & couple names
+   ========================================================== */
+
+.hero__names,
+.cover-art__names {
+  background: linear-gradient(
+    100deg,
+    var(--pink-deep) 30%,
+    var(--gold-light) 45%,
+    var(--rose) 50%,
+    var(--pink-deep) 65%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    textFloatIn 1s ease both,
+    shimmerSweep 5s ease-in-out 2s infinite;
+}
+
+.cover-art__names {
+  animation:
+    textFloatIn 1s ease 1.15s both,
+    shimmerSweep 5s ease-in-out 3.5s infinite;
+}
+
+@keyframes shimmerSweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* ==========================================================
+   GLOW PULSE — ring motifs
+   ========================================================== */
+
+.ring-motif__svg,
+.cover-art__svg .cover-art__rings {
+  filter: drop-shadow(0 0 0 rgba(184, 154, 114, 0));
+  animation-name: ornamentFloat, ringGlowPulse;
+  animation-duration: 1.5s, 3.2s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-in-out;
+  animation-delay: 0.45s, 1.8s;
+  animation-fill-mode: both, both;
+  animation-iteration-count: 1, infinite;
+}
+
+@keyframes ringGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px rgba(184, 154, 114, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(184, 154, 114, 0.55));
+  }
+}
+
+
+/* ==========================================================
+   CARD TILT / MAGNETIC HOVER
+   ========================================================== */
+
+.location-card,
+.contact-card,
+.doa {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.location-card:hover,
+.contact-card:hover {
+  transform: translateY(-4px) scale(1.012);
+  box-shadow: 0 18px 40px rgba(117, 64, 79, 0.14);
+}
+
+
+/* ==========================================================
+   BUTTON SHEEN SWEEP
+   ========================================================== */
+
+.btn,
+.btn-open {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after,
+.btn-open::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn:hover::after,
+.btn-open:hover::after {
+  left: 130%;
+}
+
+
+/* ==========================================================
+   TIMELINE — refined stagger + highlight glow
+   ========================================================== */
+
+.timeline__item {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.timeline__item:hover {
+  transform: translateX(4px);
+}
+
+.timeline__item--highlight {
+  animation: highlightPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(168, 117, 130, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(168, 117, 130, 0.28);
+  }
+}
+
+
+/* ==========================================================
+   FLOATING PARALLAX — cover motif drift
+   ========================================================== */
+
+.cover-art__motif {
+  animation:
+    motifReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both,
+    motifDrift 6s ease-in-out 2s infinite;
+}
+
+@keyframes motifDrift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+
+/* ==========================================================
+   SOCIAL ICON SPIN-IN ON HOVER
+   ========================================================== */
+
+.social-icon svg {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-icon:hover svg {
+  transform: rotate(-14deg) scale(1.12);
+}
+
+
+/* ==========================================================
+   MUSIC TOGGLE — gentle breathing ring when playing
+   ========================================================== */
+
+.music-toggle.is-playing {
+  animation: musicBreathe 2.4s ease-in-out infinite;
+}
+
+@keyframes musicBreathe {
+  0%, 100% {
+    box-shadow:
+      0 6px 18px rgba(117, 64, 79, 0.16),
+      0 0 0 0 rgba(216, 195, 165, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 6px 18px rgba(117, 64, 79, 0.16),
+      0 0 0 8px rgba(216, 195, 165, 0);
+  }
 }
