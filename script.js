@@ -537,3 +537,178 @@ document.addEventListener(
 
   }
 );
+
+/* ==========================================================
+   ROSE PETAL PARTICLE EFFECT
+   Lightweight canvas-based falling petals, drifting across
+   the whole site. Respects prefers-reduced-motion and pauses
+   when the tab isn't visible.
+   ========================================================== */
+
+(function initPetalField() {
+
+  const canvas = document.getElementById("petalCanvas");
+
+  if (!canvas) return;
+
+  const reduceMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduceMotion) {
+    canvas.remove();
+    return;
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  let width = 0;
+  let height = 0;
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  const colors = [
+    "rgba(168, 117, 130, 0.85)",  // rose
+    "rgba(209, 163, 173, 0.85)",  // rose-soft
+    "rgba(138, 83, 97, 0.75)",    // pink-dark
+    "rgba(217, 150, 165, 0.8)"    // extra soft pink
+  ];
+
+  const isMobile = window.innerWidth < 640;
+  const PETAL_COUNT = isMobile ? 14 : 24;
+
+  let petals = [];
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function makePetal(initial) {
+    const size = 8 + Math.random() * 10;
+
+    return {
+      x: Math.random() * width,
+      y: initial ? Math.random() * height : -20 - Math.random() * 100,
+      size: size,
+      speedY: 0.35 + Math.random() * 0.55,
+      speedX: (Math.random() - 0.5) * 0.5,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.006 + Math.random() * 0.012,
+      swayAmp: 18 + Math.random() * 26,
+      rotation: Math.random() * Math.PI * 2,
+      rotationSpeed: (Math.random() - 0.5) * 0.02,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      opacity: 0.55 + Math.random() * 0.4
+    };
+  }
+
+  function drawPetal(p) {
+    ctx.save();
+
+    ctx.translate(
+      p.x + Math.sin(p.sway) * p.swayAmp,
+      p.y
+    );
+
+    ctx.rotate(p.rotation);
+    ctx.globalAlpha = p.opacity;
+
+    ctx.fillStyle = p.color;
+
+    /* Simple rose petal shape via two curves */
+    ctx.beginPath();
+    ctx.moveTo(0, -p.size * 0.6);
+
+    ctx.bezierCurveTo(
+      p.size * 0.65, -p.size * 0.55,
+      p.size * 0.65, p.size * 0.55,
+      0, p.size * 0.75
+    );
+
+    ctx.bezierCurveTo(
+      -p.size * 0.65, p.size * 0.55,
+      -p.size * 0.65, -p.size * 0.55,
+      0, -p.size * 0.6
+    );
+
+    ctx.closePath();
+    ctx.fill();
+
+    /* Soft center vein */
+    ctx.globalAlpha = p.opacity * 0.5;
+    ctx.beginPath();
+    ctx.moveTo(0, -p.size * 0.5);
+    ctx.lineTo(0, p.size * 0.6);
+    ctx.lineWidth = 0.6;
+    ctx.strokeStyle = "rgba(255,255,255,0.4)";
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function step() {
+
+    ctx.clearRect(0, 0, width, height);
+
+    petals.forEach(p => {
+
+      p.y += p.speedY;
+      p.x += p.speedX;
+      p.sway += p.swaySpeed;
+      p.rotation += p.rotationSpeed;
+
+      if (p.y > height + 30) {
+        Object.assign(p, makePetal(false));
+        p.y = -20;
+      }
+
+      drawPetal(p);
+    });
+
+    animFrame = requestAnimationFrame(step);
+  }
+
+  let animFrame = null;
+
+  function start() {
+    if (!animFrame) {
+      animFrame = requestAnimationFrame(step);
+    }
+  }
+
+  function stop() {
+    if (animFrame) {
+      cancelAnimationFrame(animFrame);
+      animFrame = null;
+    }
+  }
+
+  resize();
+
+  petals = Array.from(
+    { length: PETAL_COUNT },
+    () => makePetal(true)
+  );
+
+  start();
+
+  window.addEventListener("resize", () => {
+    resize();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stop();
+    } else {
+      start();
+    }
+  });
+
+})();
