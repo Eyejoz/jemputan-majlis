@@ -191,36 +191,37 @@
 
           <!-- Rings -->
 
-          <g
-            class="cover-art__rings"
-            transform="translate(170,112)"
-          >
+          <g transform="translate(170,112)">
 
-            <circle
-              cx="-15"
-              cy="2"
-              r="21"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            />
+            <g class="cover-art__rings">
 
-            <circle
-              cx="15"
-              cy="2"
-              r="21"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            />
+              <circle
+                cx="-15"
+                cy="2"
+                r="21"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
 
-            <path
-              d="M-46 24 Q0 4 46 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.1"
-              opacity="0.65"
-            />
+              <circle
+                cx="15"
+                cy="2"
+                r="21"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+
+              <path
+                d="M-46 24 Q0 4 46 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.1"
+                opacity="0.65"
+              />
+
+            </g>
 
           </g>
 
@@ -1171,6 +1172,14 @@
   </svg>
 
 </button>
+
+
+<!-- Rose Petal Particle Canvas -->
+
+<canvas
+  id="petalCanvas"
+  aria-hidden="true"
+></canvas>
 
 
 <!-- JavaScript -->
